@@ -1,5 +1,11 @@
 ## Week 1 Quiz ##
 
+if (!file.exists("data")) {
+        dir.create("data")
+}
+        
+
+
 #############################################################################################
 # The American Community Survey distributes downloadable data about United States communities. 
 # Download the 2006 microdata survey about housing for the state of Idaho using download.file() 
@@ -57,6 +63,7 @@ sum(dat$Zip*dat$Ext,na.rm=T)
 library(XML)
 fileUrl <- "http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
 restaurants <- xmlTreeParse(fileUrl,useInternal=TRUE)
+rootNode <- xmlRoot(restaurants)
 # Get the items on the menu and prices
 zipcodes <- xpathSApply(rootNode, "//zipcode", xmlValue)
 sum(zipcodes == "21231")
@@ -87,3 +94,4 @@ download.file(fileUrl, destfile = "./data/housingIdaho.csv", method = "curl")
 DT <- fread("./data/housingIdaho.csv")
 
 system.time(DT[,mean(pwgtp15),by=SEX])
+
