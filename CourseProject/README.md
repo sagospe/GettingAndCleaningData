@@ -3,7 +3,7 @@ Getting and Cleaning Data - Course Project (week 4)
 
 This repository hosts the R code and documentation files for the Data Science's track course "Getting and Cleaning data" (week 4).
 
-The dataset being used is: ## Human Activity Recognition Using Smartphones.
+The dataset being used is: Human Activity Recognition Using Smartphones.
 
 ## Files
 
