@@ -91,10 +91,12 @@ all_data <- cbind(x_data, y_data, subject_data)
 # for each activity and each subject
 ###############################################################################
 
-# 66 <- 68 columns but last two (activity & subject)
-averages_data <- ddply(all_data, .(subject, activity), function(x) colMeans(x[, 1:66]))
-
-test  <- all_data %>% group_by(subject, activity) %>% summarise(function(x) colMeans(x[, 1:66]))
+# select every column but 'description' in order to make the average for 
+# each column
+# NOTE: summarise_each returns the result of funs in every column
+averages_data  <- all_data %>% select(-description) %>% 
+        group_by(subject, activity) %>% 
+        summarise_each(funs(mean)) 
 
 
 write.table(averages_data, "./averages_data.txt", row.name=FALSE)
